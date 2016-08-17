@@ -1,4 +1,4 @@
-- hosts: vs02.llsr.ru
+- hosts: localhost
   remote_user: root
   roles:
     - initlab-backup-roles
