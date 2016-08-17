@@ -1,0 +1,21 @@
+   #Создание директории для скрипта
+ - name: create directory user_directory/bin
+   file: path={{ item.user_directory }}/bin state=directory owner={{ item.user }} group={{ item.user }} mode=0755
+   with_items: "{{ backups }}"
+
+
+    #Копирование скриптов на сервер
+ - name: copy script
+   action: copy src=../files/backup_script.sh dest={{ item.user_directory }}/bin/ owner={{ item.user }} group={{ item.user }} mode="ug+x"
+   with_items: "{{ backups }}"
+
+   #Создание директории для хранения
+ - name: create directory user_directory/backup
+   file: path={{ item.user_directory }}/backups state=directory owner={{ item.user }} group={{ item.user }} mode=0755
+   with_items: "{{ backups }}"
+
+   #Установка задания крона
+ - cron: name="{{ item.name }}" month="{{ item.cron_month }}" weekday="{{ item.cron_weekday }}" day="{{ item.cron_day }}"
+         hour="{{ item.cron_hour }}" minute="{{ item.cron_minut }}"  user="{{ item.user }}"
+         job="sh {{ item.user_directory }}/bin/backup_script.sh {{ item.directory_site }} {{ item.user_directory }}/backups {{ item.user_db }} {{ item.user_db_passwd}} {{ item.database }} {{ item.days }}"
+   with_items: "{{ backups }}"

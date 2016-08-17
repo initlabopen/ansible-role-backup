@@ -1,0 +1,15 @@
+---
+backups:
+  - name: "backups_site_llsr"
+    user_directory: /home/webmaster
+    user: webmaster
+    cron_hour: '01'
+    cron_minut: '00'
+    cron_day: '*'
+    cron_weekday: '*'
+    cron_month: '*'
+    directory_site: /home/webmaster/domains/llsr.ru/html
+    user_db: webmaster
+    user_db_passwd: D44E4fKu1yf
+    database: llsr_db
+    days: '1'
