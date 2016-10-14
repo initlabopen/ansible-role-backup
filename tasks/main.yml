@@ -17,5 +17,5 @@
    #Установка задания крона
  - cron: name="{{ item.name }}" month="{{ item.cron_month }}" weekday="{{ item.cron_weekday }}" day="{{ item.cron_day }}"
          hour="{{ item.cron_hour }}" minute="{{ item.cron_minut }}"  user="{{ item.user }}"
-         job="sh {{ item.user_directory }}/bin/backup_script.sh {{ item.directory_site }} {{ item.user_directory }}/backups {{ item.user_db }} {{ item.user_db_passwd}} {{ item.database }} {{ item.days }}"
+         job="sh {{ item.user_directory }}/bin/backup_script.sh {{ item.directory_site }} {{ item.user_directory }}/backups {{ item.user_db|default() }} {{ item.user_db_passwd|default() }} {{ item.database|default() }} {{ item.days }}"
    with_items: "{{ backups }}"
