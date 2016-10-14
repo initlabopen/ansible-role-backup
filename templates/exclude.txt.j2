@@ -1,6 +1,7 @@
 #{{ ansible_managed }}
 
-if
-{% for v in backups[item].exclude %}
+{% if item.exclude is define %}
+{% for v in item.exclude %}
 {{v}}
 {% endfor %}
+{% endif %}
