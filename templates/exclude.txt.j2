@@ -1,6 +1,6 @@
 #{{ ansible_managed }}
 
-{% if item.exclude is define %}
+{% if item.exclude %}
 {% for v in item.exclude %}
 {{v}}
 {% endfor %}
