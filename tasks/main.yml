@@ -5,7 +5,7 @@
 
  - name: Create the exclude file
    template: src=exclude.txt.j2 dest={{ item.user_directory }}/bin/exclude.txt
-   with_items: "{{ backups.keys() }}"
+   with_items: "{{ backups }}"
 
     #Копирование скриптов на сервер
  - name: copy script
