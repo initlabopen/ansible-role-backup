@@ -1,5 +1,6 @@
 #{{ ansible_managed }}
 
-{% for v in exclude[item] %}
+if
+{% for v in backups[item].exclude %}
 {{v}}
 {% endfor %}
