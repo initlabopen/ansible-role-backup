@@ -1,7 +1,6 @@
    #Создание директории для скрипта
  - name: create directory user_directory/bin
    file: path={{ item.user_directory }}/bin state=directory owner={{ item.user }} group={{ item.user }} mode=0755
-   lineinfile: dest={{ item.user_directory }}/bin/exclude.txt line=""
    with_items: "{{ backups }}"
 
  - name: Create the exclude file
