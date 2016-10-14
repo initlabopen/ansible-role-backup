@@ -1,0 +1,5 @@
+#{{ ansible_managed }}
+
+{% for v in exclude[item] %}
+{{v}}
+{% endfor %}

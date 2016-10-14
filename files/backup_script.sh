@@ -8,10 +8,10 @@
 # $6 -
 #
 date=$(date +%Y%m%d)
-find $2 -type f -mtime +0 -delete
+find $2 -type f -mtime +$6 -delete
 cd $2
 if [ $5 ]
 then
 nice -n 19 mysqldump -u$3 -p$4 --lock-tables=false --default-character-set=utf8 $5 | gzip > $2/$5_${date}.sql.gz
 fi
-nice -n 19 tar cvzf $2/backup_${date}.tar.gz -X '$2/../bin/exclude.txt' $1 > /dev/null
+nice -n 19 tar cvzf $2/backup_${date}.tar.gz -X $2'/../bin/exclude.txt' $1 > /dev/null
