@@ -13,3 +13,4 @@ backups:
     user_db_passwd:
     database: ''
     days: '0'
+    exclude: []
