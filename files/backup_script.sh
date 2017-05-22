@@ -19,7 +19,7 @@ then
           nice -n 19 mysqldump -u$3 --lock-tables=false --default-character-set=utf8 $5 | gzip > $2/$5_${date}.sql.gz
   fi
 fi
-nice -n 19 tar cvzf $2/backup_${date}.tar.gz -X $2'/../bin/exclude.txt' $1 > /dev/null
+nice -n 19 tar cvzf $2/backup_${date}.tar.gz -X $2'/../../bin/exclude.txt' $1 > /dev/null
 
 data_info_file=$(stat /tmp/backup_info |grep -e Modify -e Модифицирован | awk '{print $2}' 2>/dev/null)
 if [ `test -f /tmp/backup_info && echo "yes"` ]
