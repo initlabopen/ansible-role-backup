@@ -8,7 +8,6 @@
 # $6 -
 #
 date=$(date +%Y%m%d)
-find $2 -type f -mtime +$6 -delete
 cd $2
 if [ $5 ]
 then
@@ -33,3 +32,5 @@ then
 else
         echo "$1 $date" > /tmp/backup_info
 fi
+sleep 3600
+find $2 -type f -mtime +$6 -delete
