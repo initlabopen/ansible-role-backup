@@ -33,5 +33,5 @@ else
         echo "$1 $date" > /tmp/backup_info
 fi
 chmod 777 /tmp/backup_info
-sleep 3600
+#sleep 3600
 find $2 -type f -mtime +$6 -delete
