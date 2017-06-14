@@ -2,4 +2,4 @@
   action: service name=cron state=reloaded
 
 - name: restart zabbix-agent
-  service: name=zabbix-agent state=restarte
+  service: name=zabbix-agent state=restarted
