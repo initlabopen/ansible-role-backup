@@ -9,7 +9,7 @@
 
     #Копирование скриптов на сервер
  - name: copy script
-   action: copy src=../files/backup_script.sh dest={{ item.destination_path }}/../bin/ owner={{ item.user }} group={{ item.user }} mode="ug+x"
+   template: src=backup_script.sh.j2 dest={{ item.destination_path }}/../bin/backup_script.sh owner={{ item.user }} group={{ item.user }} mode="ug+x"
    with_items: "{{ backups }}"
 
    #Создание директории для хранения
