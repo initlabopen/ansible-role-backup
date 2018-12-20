@@ -4,7 +4,7 @@
    with_items: "{{ backups }}"
 
  - name: Create the exclude file
-   template: src=exclude.txt.j2 dest={{ item.destination_path }}/../bin/exclude_{{ item.name }}.txt owner={{ item.user }} group={{ item.user }} mode=0750
+   template: src=exclude.txt.j2 dest={{ item.destination_path }}/../bin/exclude.txt owner={{ item.user }} group={{ item.user }} mode=0750
    with_items: "{{ backups }}"
 
     #Копирование скриптов на сервер
