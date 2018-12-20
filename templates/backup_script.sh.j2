@@ -20,7 +20,7 @@ then
   fi
 fi
 
-nice -n 19 tar cvzf $2/backup_${date}.tar.gz -X $2'/../../bin/exclude_${backup_name}.txt' $1 > /dev/null
+nice -n 19 tar cvzf $2/backup_${date}.tar.gz -X "$2/../../bin/exclude_${backup_name}.txt" $1 > /dev/null
 
 data_info_file=$(stat /tmp/backup_info_$backup_name |grep -e Modify -e Модифицирован | awk '{print $2}' 2>/dev/null)
 if [ `test -f /tmp/backup_info_$backup_name && echo "yes"` ]
