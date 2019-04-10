@@ -14,9 +14,9 @@ if [ $5 ]
 then
   if [ $4 ]
   then
-          nice -n 19 mysqldump -u$3 -p$4 --lock-tables=false --default-character-set=utf8 $5 | gzip > $2/$5_${date}.sql.gz
+          nice -n 19 mysqldump -u$3 -p$4 --skip-lock-tables --single-transaction -q --default-character-set=utf8 $5 | gzip > $2/$5_${date}.sql.gz
   else
-          nice -n 19 mysqldump -u$3 --lock-tables=false --default-character-set=utf8 $5 | gzip > $2/$5_${date}.sql.gz
+          nice -n 19 mysqldump -u$3 --skip-lock-tables --single-transaction -q --default-character-set=utf8 $5 | gzip > $2/$5_${date}.sql.gz
   fi
 fi
 
