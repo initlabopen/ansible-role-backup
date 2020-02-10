@@ -22,17 +22,17 @@ fi
 
 nice -n 19 tar cvzf $2/backup_${date}.tar.gz -X "$2/../../bin/exclude_${backup_name}.txt" $1 > /dev/null
 
-data_info_file=$(stat /tmp/backup_info_$backup_name |grep -e Modify -e Модифицирован | awk '{print $2}' 2>/dev/null)
-if [ `test -f /tmp/backup_info_$backup_name && echo "yes"` ]
+data_info_file=$(stat /usr/local/zabbix/tmp/backup_info_$backup_name |grep -e Modify -e Модифицирован | awk '{print $2}' 2>/dev/null)
+if [ `test -f /usr/local/zabbix/tmp/backup_info_$backup_name && echo "yes"` ]
 then
         if [ "$data_info_file" != `date +%Y-%m-%d` ]
         then
-                echo "$1 $date" > /tmp/backup_info_$backup_name
+                echo "$1 $date" > /usr/local/zabbix/tmp/backup_info_$backup_name
         else
-                echo "$1 $date" >> /tmp/backup_info_$backup_name
+                echo "$1 $date" >> /usr/local/zabbix/tmp/backup_info_$backup_name
         fi
 else
-        echo "$1 $date" > /tmp/backup_info_$backup_name
+        echo "$1 $date" > /usr/local/zabbix/tmp/backup_info_$backup_name
 fi
-chmod 777 /tmp/backup_info_$backup_name
+chmod 777 /usr/local/zabbix/tmp/backup_info_$backup_name
 find $2 -type f -atime +$6 -delete
