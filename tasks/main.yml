@@ -27,10 +27,3 @@
    stat:
      path: /etc/zabbix/zabbix_agentd.conf
    register: stat_result
-
- - name: add line to the zabbix
-   lineinfile: dest=/etc/zabbix/zabbix_agentd.conf line="UserParameter=backup_monitoring[*],cat /tmp/backup_info"
-   ignore_errors: yes
-   notify: restart zabbix-agent
-   when: stat_result.stat.exists == True 
-
