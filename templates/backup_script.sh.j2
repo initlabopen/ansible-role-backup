@@ -37,21 +37,10 @@ fi
 chmod 777 /usr/local/zabbix/tmp/backup_info_$backup_name
 find $2 -type f -atime +$6 -delete
 
+# Savle long backup
 if [[ `date +"%d"` -eq 01 || `date +"%d"` -eq 15 ]]; then
-  if [[ ! -d $2/../long_backup/$5 ]]; then
-    mkdir -p $2/../long_backup/$5
-  else
-    FILELIST=`ls $2/../long_backup/$5`
-    for findfile in $FILELIST; do
-      datefile=`stat --format="%y" $2/../long_backup/$5/$findfile`
-      if [[ `date -d $datefile +%d` -eq 01 && `date +"%d"` -eq 01 ]]; then
-        rm -rf $2/../long_backup/$5/$findfile
-      fi
-      if [[ `date -d $datefile +%d` -eq 15 && `date +"%d"` -eq 15 ]]; then
-        rm -rf $2/../long_backup/$5/$findfile
-      fi
-    done
-  fi
-  cp $2/$5_${date}.sql.gz $2/../month_backup/$5/
-  cp $2/backup_${date}.tar.gz $2/../month_backup/$5/
+  mkdir -p $2/../long_backup/$5
+  find $2/../long_backup/$5 -type f -atime +28 -delete
+  cp $2/$5_${date}.sql.gz $2/../long_backup/$5/
+  cp $2/backup_${date}.tar.gz $2/../long_backup/$5/
 fi
