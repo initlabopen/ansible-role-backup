@@ -38,7 +38,7 @@ chmod 777 /usr/local/zabbix/tmp/backup_info_$backup_name
 find $2 -type f -atime +$6 -delete
 
 # Savle long backup
-if [[ `date +"%d"` -eq 01 || `date +"%d"` -eq 15 ]]; then
+if [ `date +"%d"` -eq 01 -o `date +"%d"` -eq 15 ]; then
   mkdir -p $2/../long_backup/$5
   find $2/../long_backup/$5 -type f -atime +28 -delete
   cp $2/$5_${date}.sql.gz $2/../long_backup/$5/
